@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+@model Dakra.Models.Default.CodeCoverageModel
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+@Model.ProjectName
+<br/>
+@foreach (var branch in @Model.Branches.Configurations)
+{
+  Model.SelectedBranch.Name = @branch.Name;
+    @Html.ActionLink(branch.Name, "ShowBuilds", "Default", @Model.Branches.Configurations.Count, null)
+  <br/>
+}
+
+@if (@Model.BuildsCollection != null)
+{
+  foreach (var build in Model.BuildsCollection.Builds)
+  {
+    <p>@build.Number</p><br/>
+  }
+}
+
+@if (@Model.Before != null)
+{
+  <p>Przed: @Model.Before</p><br/>
+}
+
+@if (@Model.Before != null)
+{
+  <p>Przed: @Model.After</p><br/>
+}
+</body>
+</html>
